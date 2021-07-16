@@ -60,7 +60,10 @@ namespace Microsoft.BotBuilderSamples
             //services.AddTransient<IBot, AuthBot<MainDialog>>();
             //services.AddTransient<IBot, EchoBot>();
 
-            services.AddSingleton<Dialog, Akhenaten>();
+            //services.AddSingleton<Dialog, Akhenaten>();
+            //services.AddSingleton<IBotFrameworkHttpAdapter, SlackAdapter>();
+            //services.AddSingleton<IBotFrameworkHttpAdapter, FacebookAdapter>();
+            //services.AddSingleton<MultiplexingAdapter>();
 
             services.AddBotRuntime(Configuration);
 
