@@ -97,11 +97,13 @@ namespace Microsoft.Bot.Builder.Dialogs.Adaptive.Runtime.Extensions
             services.TryAddSingleton<LanguagePolicy, ConfigurationLanguagePolicy>();
 
             // CoreBotAdapter registration
-            services.AddSingleton<CoreBotAdapter>();
-            services.AddSingleton<IBotFrameworkHttpAdapter>(sp => sp.GetRequiredService<CoreBotAdapter>());
+            services.AddSingleton<MultiplexingAdapter>();
 
             // Needed for SkillsHttpClient which depends on BotAdapter
-            services.AddSingleton<BotAdapter>(sp => sp.GetRequiredService<CoreBotAdapter>());
+            services.AddSingleton<BotAdapter>(sp => sp.GetRequiredService<MultiplexingAdapter>());
+
+            services.AddSingleton<CoreBotAdapter>();
+            services.AddSingleton<IBotFrameworkHttpAdapter>(sp => sp.GetRequiredService<CoreBotAdapter>());
 
             // Runtime set up
             services.AddBotRuntimeSkills(configuration);
